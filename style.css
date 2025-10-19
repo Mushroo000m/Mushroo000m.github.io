@@ -1,0 +1,36 @@
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
+    background: linear-gradient(120deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    color: #333;
+}
+
+nav {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav h1 {
+    margin: 0 0 0.5em 0;
+    color: #2d8cf0;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 2em;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2d8cf0;
+    font-weight: 500;
+    transition: color 0.2s;
+}
