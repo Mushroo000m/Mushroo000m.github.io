@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <!-- 留言板 -->
+            <!-- 留言板 - 改回原来样式，内容为博客主人给游客的留言 -->
             <div class="sidebar-box message-board">
                 <h3 class="message-title">留言板</h3>
                 <div class="message-content">
@@ -118,9 +118,9 @@
                                 <i class="fas fa-user"></i>
                             </div>
                             <div class="message-text">
-                                <div class="message-author">小蘑菇</div>
-                                <div class="message-body">今天天气真好，适合去森林散步！</div>
-                                <div class="message-time">10分钟前</div>
+                                <div class="message-author">蘑菇大王</div>
+                                <div class="message-body">欢迎来到蘑菇森林！这里记录了我的生活点滴，希望你能喜欢～</div>
+                                <div class="message-time">2023-10-01</div>
                             </div>
                         </div>
                         <div class="message-item">
@@ -128,15 +128,21 @@
                                 <i class="fas fa-user"></i>
                             </div>
                             <div class="message-text">
-                                <div class="message-author">森林守护者</div>
-                                <div class="message-body">发现了一朵特别漂亮的蘑菇！</div>
-                                <div class="message-time">1小时前</div>
+                                <div class="message-author">蘑菇大王</div>
+                                <div class="message-body">如果你有任何问题，可以通过邮箱联系我哦！</div>
+                                <div class="message-time">2023-10-05</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="message-input">
-                        <textarea placeholder="写下你的留言..."></textarea>
-                        <button class="send-btn">发送</button>
+                        <div class="message-item">
+                            <div class="message-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="message-text">
+                                <div class="message-author">蘑菇大王</div>
+                                <div class="message-body">最近更新了森林宝藏，添加了一些新的照片，欢迎查看！</div>
+                                <div class="message-time">2023-10-10</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,13 +246,13 @@
                 </div>
             </section>
             
-            <!-- 蘑菇月月记部分 -->
+            <!-- 蘑菇月月记部分 - 保留月份切换功能，但仅2025年10月有内容 -->
             <section id="monthly">
                 <h2 class="section-title">蘑菇月月记</h2>
                 <div class="monthly-calendar">
                     <div class="calendar-header">
                         <button class="calendar-nav prev-month"><i class="fas fa-chevron-left"></i></button>
-                        <h3 class="calendar-title">2023年10月</h3>
+                        <h3 class="calendar-title">2025年十月</h3>
                         <button class="calendar-nav next-month"><i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="calendar-weekdays">
@@ -260,13 +266,6 @@
                     </div>
                     <div class="calendar-days">
                         <!-- 日历日期将通过JavaScript动态生成 -->
-                    </div>
-                    
-                    <!-- 权限控制区域 - 简单棕色按钮 -->
-                    <div class="permission-control">
-                        <button class="permission-btn" id="editToggle">
-                            <i class="fas fa-edit"></i> 作者登录
-                        </button>
                     </div>
                 </div>
                 
@@ -441,32 +440,36 @@
             mushroom.classList.remove('bright');
         });
         
-        // 留言板功能
-        const sendBtn = document.querySelector('.send-btn');
-        const messageInput = document.querySelector('.message-input textarea');
-        const messageList = document.querySelector('.message-list');
+        // 日历功能 - 仅2025年10月有内容
+        const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+        let currentDate = new Date(2025, 9, 1); // 初始化为2025年10月
         
-        sendBtn.addEventListener('click', function() {
-            const messageText = messageInput.value.trim();
-            if (messageText) {
-                const newMessage = document.createElement('div');
-                newMessage.className = 'message-item';
-                newMessage.innerHTML = `
-                    <div class="message-avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="message-text">
-                        <div class="message-author">游客</div>
-                        <div class="message-body">${messageText}</div>
-                        <div class="message-time">刚刚</div>
-                    </div>
-                `;
-                messageList.prepend(newMessage);
-                messageInput.value = '';
-            }
-        });
+        // 2025年10月的特定内容
+        const october2025Data = {
+            1: "欢迎来到老房有喜咖啡馆~金鱼冒泡咕噜咕噜~",
+            2: "拒绝焦虑！临时知道一带二俺们可以滴！",
+            3: "完蛋的一天BOOM！",
+            4: "睡到中午吃吃吃意犹未尽KTV",
+            5: "见面！好久不见！",
+            6: "蘑菇市阴雨转晴开心是基底！",
+            7: "三小时怒唱！爽！倒计时!天哭",
+            8: "小加州赌徒天气街拍体验加一",
+            9: "—上课就焦虑蔓延坏！！！",
+            10: "再仔细一点点点点！！！",
+            11: "充实且困得不行的一天",
+            12: "图书馆高效消灭堆积任务的一天",
+            13: "迎来家教暂缓小长假~",
+            14: "独自一人课后逛逛走走恢复ing",
+            15: "GOODBAIHBD！！！",
+            16: "啊哦忘记了！",
+            17: "OMG又忘记了",
+            18: "窗外下雨宅寝看小说的一天",
+            19: "图书馆奋战一下午颗粒无收俺不要成为IT妹",
+            20: "好好的日子气温告急！",
+            21: "小网站出生了！恭喜这个蘑菇！",
+            22: "相机到啦啦啦啦~"
+        };
         
-        // 日历功能
         function generateCalendar(year, month) {
             const calendarDays = document.querySelector('.calendar-days');
             calendarDays.innerHTML = '';
@@ -481,7 +484,7 @@
             for (let i = startingDay - 1; i >= 0; i--) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day other-month';
-                dayElement.textContent = prevMonthLastDay - i;
+                dayElement.innerHTML = `<div class="day-number">${prevMonthLastDay - i}</div>`;
                 calendarDays.appendChild(dayElement);
             }
             
@@ -489,14 +492,22 @@
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day';
-                dayElement.textContent = i;
                 
-                // 为特定日期添加事件标记
-                if (i === 5 || i === 12 || i === 19 || i === 26) {
-                    const eventMarker = document.createElement('div');
-                    eventMarker.className = 'event-marker';
-                    dayElement.appendChild(eventMarker);
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = i;
+                dayElement.appendChild(dayNumber);
+                
+                // 只有在2025年10月才添加内容
+                if (year === 2025 && month === 9) {
+                    if (october2025Data[i]) {
+                        const dayContent = document.createElement('div');
+                        dayContent.className = 'day-content';
+                        dayContent.textContent = october2025Data[i];
+                        dayElement.appendChild(dayContent);
+                    }
                 }
+                // 其他月份不添加任何内容
                 
                 calendarDays.appendChild(dayElement);
             }
@@ -507,181 +518,31 @@
             for (let i = 1; i <= remainingCells; i++) {
                 const dayElement = document.createElement('div');
                 dayElement.className = 'calendar-day other-month';
-                dayElement.textContent = i;
+                dayElement.innerHTML = `<div class="day-number">${i}</div>`;
                 calendarDays.appendChild(dayElement);
             }
         }
         
-        // 初始化日历
-        let currentDate = new Date();
-        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-        
         // 更新日历标题
-        const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-        document.querySelector('.calendar-title').textContent = `${currentDate.getFullYear()}年${monthNames[currentDate.getMonth()]}`;
+        function updateCalendarTitle() {
+            document.querySelector('.calendar-title').textContent = `${currentDate.getFullYear()}年${monthNames[currentDate.getMonth()]}`;
+        }
+        
+        // 初始化日历
+        generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        updateCalendarTitle();
         
         // 月份导航
         document.querySelector('.prev-month').addEventListener('click', function() {
             currentDate.setMonth(currentDate.getMonth() - 1);
             generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-            document.querySelector('.calendar-title').textContent = `${currentDate.getFullYear()}年${monthNames[currentDate.getMonth()]}`;
+            updateCalendarTitle();
         });
         
         document.querySelector('.next-month').addEventListener('click', function() {
             currentDate.setMonth(currentDate.getMonth() + 1);
             generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
-            document.querySelector('.calendar-title').textContent = `${currentDate.getFullYear()}年${monthNames[currentDate.getMonth()]}`;
-        });
-        
-        // 权限控制功能
-        const editToggle = document.getElementById('editToggle');
-        let isAuthorMode = false;
-        
-        // 作者登录功能
-        editToggle.addEventListener('click', function() {
-            if (!isAuthorMode) {
-                const password = prompt('请输入作者密码：');
-                // 简单密码验证，实际应用中应该使用更安全的方式
-                if (password === 'mogu2023') {
-                    isAuthorMode = true;
-                    editToggle.innerHTML = '<i class="fas fa-times"></i> 退出编辑';
-                    editToggle.classList.add('active');
-                    enableEditing();
-                    showNotification('已切换到作者模式，现在可以编辑日历内容。', 'success');
-                } else {
-                    showNotification('密码错误，无法切换到作者模式。', 'error');
-                }
-            } else {
-                isAuthorMode = false;
-                editToggle.innerHTML = '<i class="fas fa-edit"></i> 作者登录';
-                editToggle.classList.remove('active');
-                disableEditing();
-                showNotification('已退出作者模式，现在是访客模式。', 'info');
-            }
-        });
-        
-        // 启用编辑功能
-        function enableEditing() {
-            const calendarDays = document.querySelectorAll('.calendar-day');
-            calendarDays.forEach(day => {
-                if (!day.classList.contains('other-month')) {
-                    day.setAttribute('contenteditable', 'true');
-                    day.classList.add('editable');
-                    
-                    // 添加输入事件监听器，实时保存内容
-                    day.addEventListener('input', function() {
-                        saveCalendarData();
-                    });
-                }
-            });
-            
-            // 添加双击添加事件标记的功能
-            calendarDays.forEach(day => {
-                if (!day.classList.contains('other-month')) {
-                    day.addEventListener('dblclick', function() {
-                        if (isAuthorMode) {
-                            const eventMarker = document.createElement('div');
-                            eventMarker.className = 'event-marker';
-                            this.appendChild(eventMarker);
-                            saveCalendarData(); // 保存事件标记
-                        }
-                    });
-                }
-            });
-        }
-        
-        // 禁用编辑功能
-        function disableEditing() {
-            const calendarDays = document.querySelectorAll('.calendar-day');
-            calendarDays.forEach(day => {
-                day.setAttribute('contenteditable', 'false');
-                day.classList.remove('editable');
-                
-                // 移除输入事件监听器
-                day.removeEventListener('input', saveCalendarData);
-            });
-        }
-        
-        // 保存日历数据到localStorage
-        function saveCalendarData() {
-            const calendarData = {};
-            const calendarDays = document.querySelectorAll('.calendar-day');
-            
-            calendarDays.forEach((day, index) => {
-                if (!day.classList.contains('other-month')) {
-                    // 获取日期内容
-                    const content = day.textContent.replace(/\n/g, '').trim();
-                    
-                    // 检查是否有事件标记
-                    const hasEvent = day.querySelector('.event-marker') !== null;
-                    
-                    // 保存数据
-                    calendarData[index] = {
-                        content: content,
-                        hasEvent: hasEvent
-                    };
-                }
-            });
-            
-            // 保存到localStorage
-            localStorage.setItem('mushroomCalendarData', JSON.stringify(calendarData));
-        }
-        
-        // 从localStorage加载日历数据
-        function loadCalendarData() {
-            const savedData = localStorage.getItem('mushroomCalendarData');
-            if (savedData) {
-                const calendarData = JSON.parse(savedData);
-                const calendarDays = document.querySelectorAll('.calendar-day');
-                
-                calendarDays.forEach((day, index) => {
-                    if (!day.classList.contains('other-month') && calendarData[index]) {
-                        // 恢复内容
-                        day.textContent = calendarData[index].content;
-                        
-                        // 恢复事件标记
-                        if (calendarData[index].hasEvent) {
-                            const eventMarker = document.createElement('div');
-                            eventMarker.className = 'event-marker';
-                            day.appendChild(eventMarker);
-                        }
-                    }
-                });
-            }
-        }
-        
-        // 显示通知
-        function showNotification(message, type) {
-            // 创建通知元素
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
-            // 添加到页面
-            document.body.appendChild(notification);
-            
-            // 显示通知
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
-            
-            // 自动隐藏
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-        
-        // 页面加载时从localStorage恢复数据
-        document.addEventListener('DOMContentLoaded', function() {
-            loadCalendarData();
+            updateCalendarTitle();
         });
         
         // 蘑菇札记自动轮播功能

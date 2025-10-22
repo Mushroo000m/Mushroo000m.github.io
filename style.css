@@ -503,44 +503,6 @@ header {
     font-size: 0.75rem;
 }
 
-.message-input {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.message-input textarea {
-    width: 100%;
-    height: 80px;
-    border: 1px solid rgba(120, 192, 145, 0.5);
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 0.9rem;
-    resize: none;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.message-input textarea:focus {
-    border-color: #78c091;
-}
-
-.send-btn {
-    background: #78c091;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 15px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    align-self: flex-end;
-}
-
-.send-btn:hover {
-    background: #5fa777;
-}
-
 /* 主内容区域样式 */
 .main-content {
     flex: 1;
@@ -745,7 +707,7 @@ header {
     margin-bottom: 20px;
 }
 
-/* 修改日历日期单元格样式 - 固定尺寸，防止编辑时页面变化 */
+/* 日历日期单元格样式 */
 .calendar-day {
     aspect-ratio: 1;
     display: flex;
@@ -754,14 +716,14 @@ header {
     justify-content: flex-start;
     border: 1px solid rgba(120, 192, 145, 0.2);
     border-radius: 8px;
-    padding: 8px 5px;
+    padding: 5px;
     font-size: 0.9rem;
     transition: all 0.3s;
     position: relative;
     background: white;
-    min-height: 40px; /* 设置最小高度 */
-    overflow: hidden; /* 防止内容溢出 */
-    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    min-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .calendar-day:hover {
@@ -773,114 +735,22 @@ header {
     background: #f5f5f5;
 }
 
-/* 修改可编辑单元格样式 - 确保编辑时不会改变页面布局 */
-.calendar-day.editable {
-    outline: 2px solid var(--brown-subtle);
-    background: rgba(176, 140, 108, 0.1);
-    /* 确保编辑时内容不会撑开单元格 */
-    word-wrap: break-word;
-    overflow-y: auto; /* 允许垂直滚动 */
-    max-height: 100%; /* 限制最大高度 */
+.day-number {
+    font-weight: bold;
+    margin-bottom: 3px;
+    align-self: flex-start;
 }
 
-/* 确保编辑时不会改变布局 */
-.calendar-day.editable:focus {
-    box-shadow: 0 0 0 2px var(--brown-subtle);
-    /* 确保聚焦时不会改变布局 */
-    min-height: 40px;
-    max-height: 80px; /* 限制最大高度，避免过度扩展 */
-}
-
-.event-marker {
-    width: 6px;
-    height: 6px;
-    background: #ff6b6b;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0; /* 防止事件标记影响布局 */
-}
-
-/* 权限控制区域 - 简单棕色按钮 */
-.permission-control {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.permission-btn {
-    background: var(--brown-subtle);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(176, 140, 108, 0.3);
-}
-
-.permission-btn:hover {
-    background: #9e7a5a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(176, 140, 108, 0.4);
-}
-
-.permission-btn.active {
-    background: #9e7a5a;
-    box-shadow: 0 0 0 2px white, 0 4px 10px rgba(176, 140, 108, 0.3);
-}
-
-/* 通知样式 */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    border-radius: 8px;
-    padding: 15px 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(120%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    max-width: 350px;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-.notification.success {
-    border-left: 4px solid #78c091;
-}
-
-.notification.error {
-    border-left: 4px solid #ff6b6b;
-}
-
-.notification.info {
-    border-left: 4px solid #5fa777;
-}
-
-.notification-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.notification.success .notification-content i {
-    color: #78c091;
-}
-
-.notification.error .notification-content i {
-    color: #ff6b6b;
-}
-
-.notification.info .notification-content i {
-    color: #5fa777;
+.day-content {
+    font-size: 0.7rem;
+    line-height: 1.2;
+    text-align: left;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* 日历贴纸背景 */
@@ -1199,6 +1069,16 @@ footer {
     .slide-content p {
         font-size: 0.9rem;
     }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 3px;
+    }
+    
+    .day-content {
+        font-size: 0.6rem;
+        -webkit-line-clamp: 2;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1242,6 +1122,15 @@ footer {
     
     .stat-number {
         font-size: 1.2rem;
+    }
+    
+    .calendar-day {
+        min-height: 50px;
+    }
+    
+    .day-content {
+        font-size: 0.55rem;
+        -webkit-line-clamp: 1;
     }
 }
 
